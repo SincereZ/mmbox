@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import base64
+import sys
 import os
 import json
 from Crypto.Cipher import AES 
@@ -16,12 +17,30 @@ class Account:
 class PasswordManager:
     def __init__(self, master):
         self.master = master
-        master.title("密码箱")
+        master.title("密码箱 - 安全存储你的应用账号密码")
+        master.resizable(False, False)  # 禁止窗口缩放
 
-        # 图标设置仅适配windows环境，其他运行环境注释此行
-        master.iconbitmap('mm.ico')
+        """设置程序图标"""
+        try:
+            # PyInstaller 创建的临时文件夹中的路径
+            base_path = sys._MEIPASS
+        except Exception:
+            # 正常开发环境下的路径
+            base_path = os.path.abspath(".")
+        master.iconbitmap(os.path.join(base_path, 'mm.ico'))
 
-        master.geometry("800x500")  # 加宽窗口以适应新列
+        """设置窗口大小且居中显示"""
+        width = 800
+        height = 500
+        screen_width = self.master.winfo_screenwidth()
+        screen_height = self.master.winfo_screenheight()
+        # 计算 x 和 y 坐标
+        x = (screen_width/2) - (width/2)
+        y = (screen_height/2) - (height/2)
+        # 设置窗口位置和大小
+        self.master.geometry('%dx%d+%d+%d' % (width, height, x, y))
+
+        # 缓存账户数据
         self.accounts = []
 
         # 顶部控制区域 - 将三个元素放在同一行
