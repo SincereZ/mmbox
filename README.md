@@ -57,7 +57,7 @@ MMBox是一个私人密码管理工具，旨在帮助用户管理多个应用账
 4. 执行打包命令，在项目根目录下，会出现 `dist` 目录，可以找到 exe 应用程序：
     ```shell
     # Windows环境（验证可行）
-    pyinstaller --onefile --windowed --icon=mm.ico mmbox.py
+    python -m PyInstaller --onefile --windowed --add-data "mm.ico;." --icon=mm.ico mmbox.py
     # Ubuntu（Linux）环境（仅提示，未验证）
     pyinstaller --onefile --noconsole --add-data "path/to/icon.png:." --icon=path/to/icon.png mmbox.py
     # macOS环境（仅提示，未验证）
