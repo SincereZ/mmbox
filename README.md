@@ -73,8 +73,7 @@ MMBox是一个私人密码管理工具，旨在帮助用户管理多个应用账
     # 用于程序界面美化
     pip install ttkbootstrap
     ```
-3. 选择自己喜欢的应用图标文件，放入项目根目录（不同操作系统文件类型不同）。
-4. 执行打包命令，在项目根目录下，会出现 `dist` 目录，可以找到 exe 应用程序：
+3. 执行打包命令，在项目根目录下，会出现 `dist` 目录，可以找到 exe 应用程序：
     ```shell
     # Windows环境（验证可行）
     python -m PyInstaller --onefile --windowed --add-data "mm.ico;." --icon=mm.ico mmbox.py
